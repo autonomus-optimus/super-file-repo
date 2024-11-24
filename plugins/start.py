@@ -66,7 +66,7 @@ async def start_command(client: Client, message: Message):
             await update_verify_status(id, is_verified=True, verified_time=time.time())
             if verify_status["link"] == "":
                 reply_markup = None
-            await message.reply(f"Your token successfully verified and valid for: 24 Hour", reply_markup=reply_markup, protect_content=False, quote=True)
+            await message.reply(f"Your token successfully verified and valid for: 1 Hour", reply_markup=reply_markup, protect_content=False, quote=True)
 
         elif len(message.text) > 7 and verify_status['is_verified']:
             try:
@@ -141,7 +141,7 @@ async def start_command(client: Client, message: Message):
                     mention=message.from_user.mention,
                     id=message.from_user.id
                 ),
-                reply_markup=reply_markup,
+                reply_markup=None,
                 disable_web_page_preview=True,
                 quote=True
             )
@@ -149,7 +149,7 @@ async def start_command(client: Client, message: Message):
         else:
             verify_status = await get_verify_status(id)
             if IS_VERIFY and not verify_status['is_verified']:
-                short_url = f"adrinolinks.in"
+                short_url = f"link2paisa.com"
                 # TUT_VID = f"https://t.me/ultroid_official/18"
                 token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
                 await update_verify_status(id, verify_token=token, link="")
